@@ -11,7 +11,10 @@ public class Car {
     int currentFuel;
     int consumption; //consuption per distance unit (km)
     int mileage = 0;
-
+    int numberOfPassengers=5;
+    int currentNumberOfPassengers=1;
+    
+    
     public Car() {
         this.model = "default";
         this.maxFuel = 100;
@@ -23,6 +26,15 @@ public class Car {
         this.maxFuel = customMaxFuel;
         this.consumption = customConsumption;
     }
+    
+    
+    public Car(String customModel, int customMaxFuel, int customConsumption, int currPass , int maxPass) {
+        this.model = customModel;
+        this.maxFuel = customMaxFuel;
+        this.consumption = customConsumption;
+        this.currentNumberOfPassengers = currPass;
+        this.numberOfPassengers = maxPass;
+    }
 
     public void printAttributes() {
         System.out.println("Model: " + this.model);
@@ -31,6 +43,8 @@ public class Car {
         System.out.println("Registracija: " + this.license);
         System.out.println("Trenutno stanje u rezervoaru: " + this.currentFuel);
         System.out.println("Ukupna predjena distanca" + this.mileage);
+        System.out.println("Trenutni broj putnika je: " + this.currentNumberOfPassengers + "od maksimalnih " + this.numberOfPassengers);
+        
         System.out.println();
     }
 
@@ -65,5 +79,24 @@ public class Car {
         }
 
     }
-
+    public void getIn() {
+        if (this.currentNumberOfPassengers < this.numberOfPassengers){
+            this.currentNumberOfPassengers = this.currentNumberOfPassengers + 1;
+            System.out.println("Someone got in");
+        } else {
+            System.out.println("The car is full , there is no space for another passenger");
+        }
+    
+    }
+    public void getOut() {
+        
+        if (this.currentNumberOfPassengers> 0) {
+            this.currentNumberOfPassengers = this.currentNumberOfPassengers - 1; 
+            System.out.println("Someone got out. Current number" + this.currentNumberOfPassengers);
+        } 
+        else {
+            System.out.println("There are no more passengers");
+        }
+    
+    }
 }
