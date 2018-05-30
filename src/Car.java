@@ -11,7 +11,7 @@ public class Car {
     int currentFuel;
     int consumption; //consuption per distance unit (km)
     int mileage = 0;
-    int numberOfPassengers=5;
+    int maxPassengers=5;
     int currentNumberOfPassengers=1;
     
     
@@ -33,7 +33,7 @@ public class Car {
         this.maxFuel = customMaxFuel;
         this.consumption = customConsumption;
         this.currentNumberOfPassengers = currPass;
-        this.numberOfPassengers = maxPass;
+        this.maxPassengers = maxPass;
     }
 
     public void printAttributes() {
@@ -43,7 +43,7 @@ public class Car {
         System.out.println("Registracija: " + this.license);
         System.out.println("Trenutno stanje u rezervoaru: " + this.currentFuel);
         System.out.println("Ukupna predjena distanca" + this.mileage);
-        System.out.println("Trenutni broj putnika je: " + this.currentNumberOfPassengers + "od maksimalnih " + this.numberOfPassengers);
+        System.out.println("Trenutni broj putnika je: " + this.currentNumberOfPassengers + "od maksimalnih " + this.maxPassengers);
         
         System.out.println();
     }
@@ -80,7 +80,7 @@ public class Car {
 
     }
     public void getIn() {
-        if (this.currentNumberOfPassengers < this.numberOfPassengers){
+        if (this.currentNumberOfPassengers < this.maxPassengers){
             this.currentNumberOfPassengers = this.currentNumberOfPassengers + 1;
             System.out.println("Someone got in");
         } else {
@@ -88,14 +88,26 @@ public class Car {
         }
     
     }
-    public void getOut() {
+    
+    public void getIn(int numberOfPassengers){
+         if (this.currentNumberOfPassengers + maxPassengers < this.maxPassengers){
+            this.currentNumberOfPassengers = this.currentNumberOfPassengers + maxPassengers;
+            System.out.println(numberOfPassengers + "got in. Curent number");
+        } else {
+            System.out.println("There is no space for: " + numberOfPassengers + " passengers.\n");
+        }
+    }
+    
+    
+    
+    public void getOut(int numberOfPassengers) {
         
         if (this.currentNumberOfPassengers> 0) {
-            this.currentNumberOfPassengers = this.currentNumberOfPassengers - 1; 
-            System.out.println("Someone got out. Current number" + this.currentNumberOfPassengers);
+            this.currentNumberOfPassengers = this.currentNumberOfPassengers - numberOfPassengers; 
+            System.out.println(maxPassengers + " got out. Current number" + this.currentNumberOfPassengers);
         } 
         else {
-            System.out.println("There are no more passengers");
+            System.out.println("There are" + this.currentNumberOfPassengers + "passengers in the car\n");
         }
     
     }
